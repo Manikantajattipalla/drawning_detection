@@ -1,27 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Swimming Detection</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Swimming Detection System</h1>
-        
-        <div class="video-container">
-            <video id="videoInput" controls></video>
-        </div>
-        
-        <input type="file" id="videoUpload" accept="video/*" />
-        <br>
-        <button id="detectBtn" disabled>Detect Swimming</button>
-        <button id="resetBtn">Reset</button>
-        
-        <div id="result" class="hidden"></div>
-    </div>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Drowning Detection System</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Drowning Detection System</h1>
 
-    <script src="script.js"></script>
-</body>
+            <div class="video-container">
+                <video id="videoInput" controls></video>
+            </div>
+
+            <input type="file" id="videoUpload" accept="video/*" />
+            <br>
+            <button id="liveDetectBtn" disabled>Start Detection</button>
+            <button id="resetBtn">Reset</button>
+
+            <!-- Live Detection Display -->
+            <div id="liveDetection" class="hidden">
+                <h3>Live Detection Progress</h3>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <span id="progressText">0%</span>
+                </div>
+
+                <div id="detectionInfo">
+                    <div class="info-row">
+                        <span>Frame:</span> <span id="currentFrame">0</span> /
+                        <span id="totalFrames">0</span>
+                    </div>
+                    <div class="info-row">
+                        <span>Drowning Detections:</span> <span
+                            id="drowningCount">0</span>
+                    </div>
+                    <div class="info-row">
+                        <span>Status:</span> <span
+                            id="detectionStatus">Processing...</span>
+                    </div>
+                </div>
+
+                <!-- Live Frame Display -->
+                <div id="liveFrameContainer" class="hidden">
+                    <h4>Current Frame with Detections</h4>
+                    <img id="liveFrame" alt="Processed frame" />
+                </div>
+
+                <!-- Recent Detections -->
+                <div id="recentDetections">
+                    <h4>Recent Detections</h4>
+                    <div id="detectionsList"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script_live.js"></script>
+    </body>
 </html>

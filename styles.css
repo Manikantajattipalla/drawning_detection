@@ -1,73 +1,250 @@
 body {
-    font-family: Arial, sans-serif;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f0f8ff;
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f8ff;
 }
 
 .container {
-    text-align: center;
+  text-align: center;
 }
 
 h1 {
-    color: #007acc;
+  color: #007acc;
 }
 
 .video-container {
-    margin: 20px 0;
-    position: relative;
+  margin: 20px 0;
+  position: relative;
 }
 
 #videoInput {
-    width: 100%;
-    max-width: 640px;
-    height: auto;
-    border: 2px dashed #007acc;
-    border-radius: 8px;
-    background-color: #e6f7ff;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  border: 2px dashed #007acc;
+  border-radius: 8px;
+  background-color: #e6f7ff;
 }
 
 #result {
-    margin: 20px 0;
-    padding: 15px;
-    border-radius: 8px;
-    font-size: 1.2em;
-    font-weight: bold;
+  margin: 20px 0;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1.2em;
+  font-weight: bold;
 }
 
-.swimming {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+.drowning {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }
 
-.not-swimming {
-    background-color: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+.not-drowning {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
 }
 
 button {
-    background-color: #007acc;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 1em;
-    border-radius: 4px;
-    cursor: pointer;
-    margin: 10px 5px;
+  background-color: #007acc;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1em;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 10px 5px;
 }
 
 button:hover {
-    background-color: #005a99;
+  background-color: #005a99;
 }
 
 button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
+  background-color: #cccccc;
+  cursor: not-allowed;
 }
 
 .hidden {
-    display: none;
+  display: none;
+}
+
+input[type="file"] {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Live Detection Styles */
+#liveDetection {
+  margin: 20px 0;
+  padding: 20px;
+  border: 2px solid #007acc;
+  border-radius: 10px;
+  background-color: #f8f9fa;
+  text-align: left;
+}
+
+#liveDetection h3,
+#liveDetection h4 {
+  color: #007acc;
+  margin-bottom: 15px;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  margin: 15px 0;
+  gap: 10px;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 20px;
+  background-color: #e9ecef;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #28a745, #20c997);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+#progressText {
+  font-weight: bold;
+  min-width: 40px;
+  color: #007acc;
+}
+
+#detectionInfo {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid #dee2e6;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0;
+  padding: 3px 0;
+}
+
+.info-row span:first-child {
+  font-weight: bold;
+  color: #495057;
+}
+
+.info-row span:last-child {
+  color: #007acc;
+  font-weight: bold;
+}
+
+#liveFrameContainer {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#liveFrame {
+  max-width: 100%;
+  max-height: 400px;
+  border: 2px solid #007acc;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#recentDetections {
+  margin: 20px 0;
+}
+
+#detectionsList {
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.detection-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  margin: 5px 0;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+  border-left: 4px solid #007acc;
+}
+
+.detection-item.drowning {
+  border-left-color: #dc3545;
+  background-color: #ffeaea;
+}
+
+.detection-item .detection-label {
+  font-weight: bold;
+}
+
+.detection-item .detection-confidence {
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+.detection-item .detection-time {
+  color: #007acc;
+  font-size: 0.9em;
+}
+
+/* Live Detection Button */
+#liveDetectBtn {
+  background-color: #28a745;
+}
+
+#liveDetectBtn:hover {
+  background-color: #218838;
+}
+
+#liveDetectBtn:disabled {
+  background-color: #6c757d;
+}
+
+/* Animation for live elements */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.processing {
+  animation: pulse 1.5s infinite;
+}
+
+/* Status indicators */
+.status-processing {
+  color: #ffc107;
+}
+
+.status-completed {
+  color: #28a745;
+}
+
+.status-error {
+  color: #dc3545;
 }
